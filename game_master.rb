@@ -1,4 +1,3 @@
-
 class GameMaster
   def announce_open(data)
     puts "#{data[0].name}は#{data[1].mark}の#{data[1].number}を出しました。"
