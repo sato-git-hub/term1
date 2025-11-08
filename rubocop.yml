@@ -1,54 +1,23 @@
+#RuboCop拡張機能
 plugins:
-  - rubocop-minitest
-  - rubocop-packaging
   - rubocop-performance
-  - rubocop-rails
-  - rubocop-md
   
 AllCops:
-  NewCops: enable
+  TargetRubyVersion: 3.2.9
   # RuboCop has a bunch of cops enabled by default. This setting tells RuboCop
   # to ignore them, so only the ones explicitly set in this file are enabled.
+  # RuboCopが持つ**すべてのCop（ルール）を、デフォルトで無効 (Disabled)**にします。明示的に有効にしたものだけを使う
   DisabledByDefault: true
+  # RuboCopの実行時に、VS Code拡張機能など外部の拡張機能のインストールを推奨するメッセージを表示しないようにします。
   SuggestExtensions: false
-  Exclude:
-    - '**/tmp/**/*'
-    - '**/templates/**/*'
-    - '**/vendor/**/*'
-    - 'actionmailbox/test/dummy/**/*'
-    - 'activestorage/test/dummy/**/*'
-    - 'actiontext/test/dummy/**/*'
-    - 'tools/rail_inspector/test/fixtures/*'
-    - guides/source/debugging_rails_applications.md
-    - guides/source/active_support_instrumentation.md
-    - '**/node_modules/**/*'
-    - '**/CHANGELOG.md'
-    - '**/2_*_release_notes.md'
-    - '**/3_*_release_notes.md'
-    - '**/4_*_release_notes.md'
-    - '**/5_*_release_notes.md'
-    - '**/6_*_release_notes.md'
 
+  # Exclude:とはRuboCopのチェック対象から外すファイルパス
 
+ 
 Performance:
   Exclude:
+  # このディレクトリ内のファイルはパフォーマンスチェックの対象外となる
     - '**/test/**/*'
-
-# Prefer assert_not over assert !
-Rails/AssertNot:
-  Include:
-    - '**/test/**/*'
-
-# Prefer assert_not_x over refute_x
-Rails/RefuteMethods:
-  Include:
-    - '**/test/**/*'
-
-Rails/IndexBy:
-  Enabled: true
-
-Rails/IndexWith:
-  Enabled: true
 
 # Prefer &&/|| over and/or.
 Style/AndOr:
@@ -112,8 +81,6 @@ Style/HashSyntax:
 Layout/IndentationConsistency:
   Enabled: true
   EnforcedStyle: indented_internal_methods
-  Exclude:
-    - '**/*.md'
 
 # Two spaces, no tabs (for indentation).
 Layout/IndentationWidth:
@@ -162,16 +129,6 @@ Style/ExplicitBlockArgument:
 Style/FrozenStringLiteralComment:
   Enabled: true
   EnforcedStyle: always
-  Exclude:
-    - 'actionview/test/**/*.builder'
-    - 'actionview/test/**/*.ruby'
-    - 'actionpack/test/**/*.builder'
-    - 'actionpack/test/**/*.ruby'
-    - 'activestorage/db/migrate/**/*.rb'
-    - 'activestorage/db/update_migrate/**/*.rb'
-    - 'actionmailbox/db/migrate/**/*.rb'
-    - 'actiontext/db/migrate/**/*.rb'
-    - '**/*.md'
 
 Style/MapToHash:
   Enabled: true
@@ -383,29 +340,3 @@ Performance/RedundantStringChars:
 Performance/StringInclude:
   Enabled: true
 
-Minitest/AssertNil:
-  Enabled: true
-
-Minitest/AssertRaisesWithRegexpArgument:
-  Enabled: true
-
-Minitest/AssertWithExpectedArgument:
-  Enabled: true
-
-Minitest/LiteralAsActualArgument:
-  Enabled: true
-
-Minitest/NonExecutableTestMethod:
-  Enabled: true
-
-Minitest/SkipEnsure:
-  Enabled: true
-
-Minitest/UnreachableAssertion:
-  Enabled: true
-
-Markdown:
-  # Whether to run RuboCop against non-valid snippets
-  WarnInvalid: true
-  # Whether to lint codeblocks without code attributes
-  Autodetect: false
